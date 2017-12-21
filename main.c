@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include "comment.h"
 #include "three/threeChapter.h"
+#include "four/four.h"
 #define BUFF_SIZE 8192
 
 void program_1_3(void);
@@ -26,20 +27,7 @@ int main(int argc,char *argv[])
 {
 //	printf("user id = %d,group id = %d\n",getuid(),getgid());
 //	program_3_3();
-	int fd = 0;
-	if((fd = open(argv[1],O_WRONLY) < 0))
-	{
-		if(errno == ENOENT){
-			err_sys("no %s",argv[1]);
-			if((fd = creat(argv[1],O_RDWR)) <0)
-			{
-				err_sys("create erro");
-			}
-		}
-		else{
-			err_sys("open erro!");
-		}
-	}
+	program_4_2(argc,argv);
 }
 
 void program_1_3(void)

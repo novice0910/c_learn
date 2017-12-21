@@ -15,5 +15,6 @@ C_DEPS :=
 SUBDIRS := \
 three \
 . \
+four \
 dirTest \
 
