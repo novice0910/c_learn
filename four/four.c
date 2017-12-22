@@ -9,6 +9,7 @@
 #include "four.h"
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <dirent.h>
 #include "../comment.h"
 
 

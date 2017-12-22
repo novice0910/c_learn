@@ -12,6 +12,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <fcntl.h>
+#include "seven/seven.h"
 #include "comment.h"
 #include "three/threeChapter.h"
 #include "four/four.h"
@@ -21,15 +22,49 @@ void program_1_3(void);
 void program_1_4(void);
 void program_1_6(char *);
 void program_1_8(void);
+void program_8_1(void);
 static void sigInit(int);		/*our signal_catching function*/
+
+
+int glob = 6;
+char buf[] = "a write to stdout\n";
 
 int main(int argc,char *argv[])
 {
-//	printf("user id = %d,group id = %d\n",getuid(),getgid());
-//	program_3_3();
-	program_4_2(argc,argv);
+	int var;
+	pid_t pid;
+	var = 88;
+	printf("the dad pid = %d\n",getpid());
+	if(write(STDOUT_FILENO,buf,sizeof(buf) -1) != (sizeof(buf)-1))
+	{
+		err_sys("write error!");
+	}
+	printf("before fork\n");
+	if((pid = fork()) <0)
+	{
+		err_sys("fork error!");
+	}
+	else if(pid == 0)
+	{
+		glob++;
+		var ++;
+		printf("the pid 2 = %d\n",getpid());
+	}
+	else
+	{
+		printf("the pid 3 = %d\n",getpid());
+		sleep(2);
+	}
+
+
+	printf("pid = %d,glob= %d,var = %d\n",getpid(),glob,var);
+	exit(0);
 }
 
+void program_8_1(void)
+{
+
+}
 void program_1_3(void)
 {
 	int c;

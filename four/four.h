@@ -11,5 +11,5 @@
 void my_stat(char * pathName);
 void program_4_1(int argc,char* argv[]);
 void program_4_2(int argc,char* argv[]);
-
+void program_4_7();
 #endif /* FOUR_FOUR_H_ */
